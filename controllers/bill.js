@@ -46,6 +46,10 @@ const getById = async (req, res, next) => {
         },
       ],
     });
+
+    if (!data) {
+      return res.status(404).send({ message: "Not found" });
+    }
     const dataFormat = data.map((item) => {
       item.dataValues["discountApplied"] = JSON.parse(item.discount);
       delete item.dataValues.discount;

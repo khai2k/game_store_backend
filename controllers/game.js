@@ -58,6 +58,9 @@ const getById = async (req, res, next) => {
         },
       ],
     });
+    if (!game) {
+      return res.status(404).send({ message: "Not found" });
+    }
     return res.send(game);
   } catch (error) {
     next(error);

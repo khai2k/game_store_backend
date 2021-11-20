@@ -3,14 +3,14 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 
 const login = async (req, res, next) => {
-  const { userName, password } = req.body;
+  const { email, password } = req.body;
   const conditions = {
-    [Op.or]: [{ userName, password }],
+    [Op.or]: [{ email, password }],
   };
   try {
     const user = await Users.findOne({ where: conditions });
     if (!user) {
-      return res.status(404).send({ message: "Invalid userName or password" });
+      return res.status(404).send({ message: "Invalid email or password" });
     }
     return res.status(200).send("ok");
   } catch (error) {
