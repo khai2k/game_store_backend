@@ -6,13 +6,14 @@ var {
   getUserById,
   updateUserById,
 } = require("../controllers/users");
+var { verifyToken, isAdmin } = require("../middlewares/auth");
 
 var router = express.Router();
 
 router.post("/login", login);
 router.post("/register", register);
-router.get("/", getAllUser);
-router.get("/:idUser", getUserById);
-router.put("/:idUser", updateUserById);
+router.get("/", verifyToken, isAdmin, getAllUser);
+router.get("/:idUser", verifyToken, isAdmin, getUserById);
+router.put("update/:idUser", verifyToken, isAdmin, updateUserById);
 
 module.exports = router;

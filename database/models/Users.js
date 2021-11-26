@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       background: {
         type: DataTypes.STRING,
       },
+      roles: {
+        type: DataTypes.STRING,
+      },
     },
     {
       timestamps: false,
