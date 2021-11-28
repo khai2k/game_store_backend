@@ -1,19 +1,9 @@
+const { Genre } = require("../database/models");
 const { v4: uuidv4 } = require("uuid");
-
-const {
-  Game,
-  Discount,
-  DetailGenre,
-  Genre,
-  ImageGameDetail,
-  Bill,
-  Users,
-} = require("../database/models");
-// const { Op } = require("sequelize");
 
 const getAll = async (req, res, next) => {
   try {
-    const data = await Discount.findAll();
+    const data = await Genre.findAll();
     return res.send(data);
   } catch (error) {
     next(error);
@@ -22,9 +12,14 @@ const getAll = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const data = await Bill.findAll({
-      where: { idDiscount: req.params.id },
+    const data = await Genre.findOne({
+      where: {
+        idGenre: req.params.id,
+      },
     });
+    if (!data) {
+      return res.status(404).send({ message: "Not found" });
+    }
     return res.send(data);
   } catch (error) {
     next(error);
@@ -33,8 +28,8 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const data = new Bill({
-      idDiscount: uuidv4(),
+    const data = new Genre({
+      idGenre: uuidv4(),
       ...req.body,
     });
     await data.save();
@@ -47,18 +42,19 @@ const create = async (req, res, next) => {
 const updateById = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const dataExists = await Discount.findOne({
-      where: { idDiscount: id },
+    const dataExists = await Genre.findOne({
+      where: { idGenre: id },
     });
     if (!dataExists) {
       return res.status(404).send("Not found");
     }
-    await Discount.update({ ...req.body }, { where: { idDiscount: id } });
+    await Genre.update({ ...req.body }, { where: { idGenre: id } });
     return res.send(req.body);
   } catch (error) {
     next(error);
   }
 };
+
 module.exports = {
   getAll,
   getById,

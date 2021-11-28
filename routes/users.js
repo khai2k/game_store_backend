@@ -14,6 +14,6 @@ router.post("/login", login);
 router.post("/register", register);
 router.get("/", verifyToken, isAdmin, getAllUser);
 router.get("/:idUser", verifyToken, isAdmin, getUserById);
-router.put("update/:idUser", verifyToken, isAdmin, updateUserById);
+router.put("/update/:idUser", verifyToken, isAdmin, updateUserById);
 
 module.exports = router;

@@ -95,13 +95,8 @@ const updateUserById = async (req, res, next) => {
     if (!dataExists) {
       return res.status(404).send("Not found");
     }
-    const data = new Users({
-      idUser,
-      ...req.body,
-    });
-    console.log(data);
-    await data.save();
-    return res.send(data);
+    await Users.update({ ...req.body }, { where: { idUser } });
+    return res.send(req.body);
   } catch (error) {
     next(error);
   }

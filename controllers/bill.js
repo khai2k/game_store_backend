@@ -85,13 +85,8 @@ const updateById = async (req, res, next) => {
     if (!dataExists) {
       return res.status(404).send("Not found");
     }
-    const data = new Bill({
-      idBill: id,
-      ...req.body,
-    });
-    console.log(data);
-    await data.save();
-    return res.send(data);
+    await Bill.update({ ...req.body }, { where: { idBill: id } });
+    return res.send(req.body);
   } catch (error) {
     next(error);
   }

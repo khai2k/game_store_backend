@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const getAll = async (req, res, next) => {
   try {
-    const game = await Game.findAll({
+    const data = await Game.findAll({
       include: [
         { model: Discount, as: "discount" },
         {
@@ -28,7 +28,7 @@ const getAll = async (req, res, next) => {
         },
       ],
     });
-    return res.send(game);
+    return res.send(data);
   } catch (error) {
     next(error);
   }
@@ -36,7 +36,7 @@ const getAll = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const game = await Game.findOne({
+    const data = await Game.findOne({
       where: {
         idGame: req.params.id,
       },
@@ -58,10 +58,10 @@ const getById = async (req, res, next) => {
         },
       ],
     });
-    if (!game) {
+    if (!data) {
       return res.status(404).send({ message: "Not found" });
     }
-    return res.send(game);
+    return res.send(data);
   } catch (error) {
     next(error);
   }
@@ -71,12 +71,12 @@ const create = async (req, res, next) => {
   try {
     ///TODO create game and create version
 
-    const game = new Game({
+    const data = new Game({
       idGame: uuidv4(),
       ...req.body,
     });
-    await game.save();
-    return res.send(game);
+    await data.save();
+    return res.send(data);
   } catch (error) {
     next(error);
   }
@@ -91,13 +91,8 @@ const updateById = async (req, res, next) => {
     if (!dataExists) {
       return res.status(404).send("Not found");
     }
-    const data = new Game({
-      idGame: id,
-      ...req.body,
-    });
-    console.log(data);
-    await data.save();
-    return res.send(data);
+    await Game.update({ ...req.body }, { where: { idGame: id } });
+    return res.send(req.body);
   } catch (error) {
     next(error);
   }
