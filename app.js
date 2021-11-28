@@ -12,6 +12,8 @@ var usersRouter = require("./routes/users");
 var gameRouter = require("./routes/game");
 var billRouter = require("./routes/bill");
 var genreRouter = require("./routes/genre");
+var detailGenreRouter = require("./routes/detailGenre");
+
 var app = express();
 
 // view engine setup
@@ -30,6 +32,7 @@ app.use("/api/user", usersRouter);
 app.use("/api/game", gameRouter);
 app.use("/api/bill", billRouter);
 app.use("/api/genre", genreRouter);
+app.use("/api/detailGenre", detailGenreRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
