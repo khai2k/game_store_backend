@@ -13,6 +13,7 @@ var gameRouter = require("./routes/game");
 var billRouter = require("./routes/bill");
 var genreRouter = require("./routes/genre");
 var detailGenreRouter = require("./routes/detailGenre");
+var gameVersionRouter = require("./routes/gameVersion");
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use("/api/game", gameRouter);
 app.use("/api/bill", billRouter);
 app.use("/api/genre", genreRouter);
 app.use("/api/detailGenre", detailGenreRouter);
+app.use("/api/gameVersion", gameVersionRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
