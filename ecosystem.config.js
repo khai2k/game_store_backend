@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "app1",
+      name: "game_store_backend",
       script: "./bin/www",
     },
   ],
