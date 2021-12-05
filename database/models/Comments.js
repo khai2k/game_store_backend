@@ -25,6 +25,15 @@ module.exports = (sequelize, DataTypes) => {
       time: {
         type: DataTypes.DATE,
       },
+      star: {
+        type: DataTypes.FLOAT,
+      },
+      userName: {
+        type: DataTypes.STRING,
+      },
+      avatar: {
+        type: DataTypes.STRING,
+      },
     },
     {
       freezeTableName: true,

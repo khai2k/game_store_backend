@@ -1,16 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  const WishList = sequelize.define(
-    "WishList",
+  const Suggestion = sequelize.define(
+    "Suggestion",
     {
-      idGame: {
+      idSuggestion: {
         primaryKey: true,
         type: DataTypes.STRING,
         allowNull: false,
       },
-      idUser: {
-        primaryKey: true,
+      title: {
         type: DataTypes.STRING,
-        allowNull: false,
+      },
+      value: {
+        type: DataTypes.STRING,
+      },
+      position: {
+        type: DataTypes.INTEGER,
       },
     },
     {
@@ -20,5 +24,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  return WishList;
+  return Suggestion;
 };

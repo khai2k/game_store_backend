@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      isInstalled: {
+      isIntalled: {
         type: DataTypes.INTEGER,
       },
     },
@@ -23,5 +23,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  Collection.associate = function (models) {
+    Collection.hasOne(models.Users, {
+      sourceKey: "idUser",
+      foreignKey: "idUser",
+      as: "user",
+    });
+    Collection.hasOne(models.Game, {
+      sourceKey: "idGame",
+      foreignKey: "idGame",
+      as: "listGame",
+    });
+  };
   return Collection;
 };

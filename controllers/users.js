@@ -23,7 +23,7 @@ const login = async (req, res, next) => {
     }
     const token = await generateToken(user);
     return res.status(200).send({
-      userName: user.userName,
+      user,
       token,
     });
   } catch (error) {
@@ -52,6 +52,7 @@ const register = async (req, res, next) => {
       ...req.body,
       idUser: uuidv4(),
       password: hashPass,
+      roles: "user",
     });
 
     await user.save();

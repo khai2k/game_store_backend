@@ -14,6 +14,11 @@ var billRouter = require("./routes/bill");
 var genreRouter = require("./routes/genre");
 var detailGenreRouter = require("./routes/detailGenre");
 var gameVersionRouter = require("./routes/gameVersion");
+var commentsRouter = require("./routes/comments");
+var collectionRouter = require("./routes/collection");
+var imageGameDetailRouter = require("./routes/likeComment");
+var likeCommentRouter = require("./routes/likeComment");
+var suggestionRouter = require("./routes/suggestion");
 
 var app = express();
 
@@ -35,6 +40,11 @@ app.use("/api/bill", billRouter);
 app.use("/api/genre", genreRouter);
 app.use("/api/detailGenre", detailGenreRouter);
 app.use("/api/gameVersion", gameVersionRouter);
+app.use("/api/comments", commentsRouter);
+app.use("/api/collection", collectionRouter);
+app.use("/api/imageDetail", imageGameDetailRouter);
+app.use("/api/likeComment", likeCommentRouter);
+app.use("/api/suggestion", suggestionRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

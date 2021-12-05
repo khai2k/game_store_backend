@@ -46,6 +46,12 @@ module.exports = (sequelize, DataTypes) => {
       privacyPolicy: {
         type: DataTypes.STRING,
       },
+      memory: {
+        type: DataTypes.STRING,
+      },
+      filePlay: {
+        type: DataTypes.STRING,
+      },
     },
     {
       freezeTableName: true,

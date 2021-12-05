@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@microsoft/signalr": "^6.0.0",
     "circular-json": "^0.5.9",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

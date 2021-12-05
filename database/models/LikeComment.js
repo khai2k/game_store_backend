@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      IsLike: {
+        type: DataTypes.BIGINT,
+      },
     },
     {
       freezeTableName: true,

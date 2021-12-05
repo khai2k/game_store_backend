@@ -14,21 +14,22 @@ const {
 const getAll = async (req, res, next) => {
   try {
     const data = await Bill.findAll({
-      include: [
-        { model: Game, as: "game" },
-        {
-          model: Users,
-          as: "user",
-        },
-      ],
+      // include: [
+      // { model: Game, as: "game" },
+      // {
+      //   model: Users,
+      //   as: "user",
+      // },
+      // ],
     });
-    const dataFormat = data.map((item) => {
-      item.dataValues["discountApplied"] = JSON.parse(item.discount);
-      delete item.dataValues.discount;
+    // const dataFormat = data.map((item) => {
+    //   item.dataValues["discountApplied"] = JSON.parse(item.discount);
+    //   delete item.dataValues.discount;
 
-      return item;
-    });
-    return res.send(dataFormat);
+    //   return item;
+    // });
+
+    return res.send(data);
   } catch (error) {
     next(error);
   }
