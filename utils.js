@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "secret";
+const JWT_SECRET = "zxcasdqwe123zxcasdqwe123zxcasdqwe123zxcasdqwe123";
 const tokenLife = "1d";
 
 const extractToken = (req) => {

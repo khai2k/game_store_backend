@@ -1,8 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { extractToken } = require("../utils");
 
-const JWT_SECRET = "secret";
-const tokenLife = "1d";
+const JWT_SECRET = "zxcasdqwe123zxcasdqwe123zxcasdqwe123zxcasdqwe123";
 
 const verifyToken = (req, res, next) => {
   //   const token = req.body.token || req.query.token || req.headers["x-access-token"];
