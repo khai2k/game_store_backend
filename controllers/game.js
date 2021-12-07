@@ -4,6 +4,7 @@ const {
   DetailGenre,
   Genre,
   ImageGameDetail,
+  GameVersion,
 } = require("../database/models");
 const { v4: uuidv4 } = require("uuid");
 
@@ -68,15 +69,53 @@ const getById = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
+  const { game, gameversion, listimagedetail, listgenredetail } = req.body;
   try {
-    ///TODO create game and create version
+    const idGame = uuidv4();
+    const idGameVersion = uuidv4();
+    const releaseDate = new Date(Date.now()).toISOString();
+    const dateUpdate = releaseDate;
 
-    const data = new Game({
-      idGame: uuidv4(),
-      ...req.body,
+    const gameVersionData = new GameVersion({
+      ...gameversion,
+      idGame,
+      idGameVersion,
+      dateUpdate,
     });
-    await data.save();
-    return res.send(data);
+    for (const idGenre of listgenredetail) {
+      const existGenre = await Genre.findOne({ where: { idGenre } });
+      if (!existGenre)
+        return res.status(404).send({ message: idGenre + " not found" });
+    }
+
+    const newListGenreDetail = listgenredetail.map((item) => {
+      return {
+        idGame,
+        idGenre: item,
+      };
+    });
+    const gameData = new Game({
+      ...game,
+      idGame,
+      numberOfBuyer: 0,
+      numberOfDownloaders: 0,
+      numOfRate: 0,
+      releaseDate,
+    });
+    await gameData.save();
+    await gameVersionData.save();
+
+    await DetailGenre.bulkCreate(newListGenreDetail);
+    const newListImage = listimagedetail.map((item) => {
+      return {
+        idGame,
+        url: item,
+        idImage: uuidv4(),
+      };
+    });
+    await ImageGameDetail.bulkCreate(newListImage);
+
+    return res.send(game);
   } catch (error) {
     next(error);
   }

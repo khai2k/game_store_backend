@@ -10,7 +10,7 @@ var { verifyToken, isAdmin } = require("../middlewares/auth");
 var router = express.Router();
 
 router.get("/", getAll);
-router.post("/create", verifyToken, isAdmin, create);
+router.post("/create", create);
 router.get("/by-game/:id", verifyToken, isAdmin, GetVersionByIdGame);
 router.get("/by-game/new-version/:id", GetNewVersionByIdGame);
 

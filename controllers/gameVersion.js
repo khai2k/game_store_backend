@@ -17,6 +17,7 @@ const create = async (req, res, next) => {
       idGameVersion: uuidv4(),
       ...req.body,
     });
+    console.log("🚀 ~ file: gameVersion.js ~ line 20 ~ create ~ data", data);
     await data.save();
     return res.send(data);
   } catch (error) {

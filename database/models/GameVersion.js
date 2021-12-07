@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       dateUpdate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
       },
       urlDowload: {
         type: DataTypes.STRING,
@@ -56,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       freezeTableName: true,
       timestamps: false,
+      hasTrigger: true,
       // Other model options go here
     }
   );

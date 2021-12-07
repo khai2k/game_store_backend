@@ -19,6 +19,7 @@ var collectionRouter = require("./routes/collection");
 var imageGameDetailRouter = require("./routes/likeComment");
 var likeCommentRouter = require("./routes/likeComment");
 var suggestionRouter = require("./routes/suggestion");
+var discountRouter = require("./routes/discount");
 
 var app = express();
 
@@ -31,6 +32,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(function (req, res, next) {
+  for (var key in req.body) {
+    req.body[key.toLowerCase()] = req.body[key];
+  }
+  next();
+});
 
 app.use("/", indexRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -45,6 +53,7 @@ app.use("/api/collection", collectionRouter);
 app.use("/api/imageDetail", imageGameDetailRouter);
 app.use("/api/likeComment", likeCommentRouter);
 app.use("/api/suggestion", suggestionRouter);
+app.use("/api/discount", discountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

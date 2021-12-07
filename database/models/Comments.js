@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       time: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
       },
       star: {
         type: DataTypes.FLOAT,

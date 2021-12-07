@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       releaseDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
       },
       plaform: {
         type: DataTypes.STRING,

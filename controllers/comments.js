@@ -1,5 +1,4 @@
 const { Comments } = require("../database/models");
-const { v4: uuidv4 } = require("uuid");
 
 const getAll = async (req, res, next) => {
   try {
@@ -53,9 +52,25 @@ const getCommentCountByIdGame = async (req, res, next) => {
   }
 };
 
+const GetCommentOfGameOfUser = async (req, res, next) => {
+  try {
+    const data = await Comments.findAll({
+      where: {
+        idGame: req.params.idGame,
+        idUser: req.params.idUser,
+      },
+    });
+
+    return res.status(200).send(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   getCommentByIdGame,
   getCommentCountByIdGame,
+  GetCommentOfGameOfUser,
 };
